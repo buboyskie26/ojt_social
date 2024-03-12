@@ -6,7 +6,8 @@ import { quotelessJson } from 'zod';
 
 interface Props {
   userLoggedInId: string;
-  post: Post;
+  // post: Post;
+  post: any;
 }
 
 const EditForm = ({ userLoggedInId, post }: Props) => {
@@ -29,7 +30,8 @@ const EditForm = ({ userLoggedInId, post }: Props) => {
       //
       const formData = new FormData(e.target);
 
-      const res = await fetch(`/api/testpost/${post.id}`, {
+      // const res = await fetch(`/api/testpost/${post.id}`, {
+        const res = await fetch(`/api/posts/${post.id}`, {
         method: 'PUT',
         body: formData,
       });
@@ -46,6 +48,8 @@ const EditForm = ({ userLoggedInId, post }: Props) => {
   };
 
   const archivingImage = async (postImageId: any) => {
+
+  if (window.confirm('Are you sure you want to remove the selected image?')) {
     console.log(`postImageId: ${postImageId}`);
     try {
       // const res = await fetch(`/api/posts/archived/${postImageId}`, {
@@ -61,6 +65,7 @@ const EditForm = ({ userLoggedInId, post }: Props) => {
       //
     } catch (err) {
       console.log(err);
+    }
     }
   };
 

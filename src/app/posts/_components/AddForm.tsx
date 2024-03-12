@@ -17,6 +17,7 @@ type PostFormData = z.infer<typeof postSchema>;
 const AddForm = ({ userLoggedInId }: Props) => {
   //
   // const [formState, action] = useFormState(yourAction, { message: '' });
+  //
   const router = useRouter();
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -59,6 +60,7 @@ const AddForm = ({ userLoggedInId }: Props) => {
   } = useForm<PostFormData>({
     resolver: zodResolver(postSchema),
   });
+  //
   // Test next with zod validation with image validation
   // Test with react-hook-form edit with images,
 
@@ -80,7 +82,8 @@ const AddForm = ({ userLoggedInId }: Props) => {
     try {
       setIsSubmitting(true);
       // Perform your API request with formData
-      const response = await fetch(`/api/testpost`, {
+      // const response = await fetch(`/api/testpost`, {
+        const response = await fetch(`/api/posts`, {
         method: 'POST',
         body: formData,
       });
@@ -147,7 +150,7 @@ const AddForm = ({ userLoggedInId }: Props) => {
             className="border rounded w-full py-2 px-3"
             accept="image/*"
             multiple
-            {...register('images')}
+            {...register("images")}
             onChange={handleImageChange}
             // required
           />

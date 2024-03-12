@@ -11,26 +11,28 @@ const DeletePost = ({ postId }: { postId: number }) => {
   const [isDeleting, setDeleting] = useState(false);
   //
   const deletePost = async () => {
+
+    if (window.confirm('Are you sure you want to remove the selected post?')) {
     try {
-      // const res = await axios.delete('/api/posts/' + postId);
-      const res = await fetch('/api/posts/unarchived/' + postId, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      //
-      if (res.status) {
-        console.log(`res: `);
-        console.log(res);
-        // redirect to dashboard.
-        router.push('/dashboard');
-        router.refresh();
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+        // const res = await axios.delete('/api/posts/' + postId);
+        const res = await fetch('/api/posts/unarchived/' + postId, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        //
+        if (res.status) {
+          console.log(`res: `);
+          console.log(res);
+          // redirect to dashboard.
+          router.push('/dashboard');
+          router.refresh();
+        }
+      } catch (error) {
+        console.log(error);
+      }}
+    };
   //
   return (
     <>

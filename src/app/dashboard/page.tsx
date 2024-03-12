@@ -25,7 +25,7 @@ const DashboardPage = async ({ searchParams }: Props) => {
   // });
 
   const page = parseInt(searchParams.page) || 1;
-  const pageSize = 3;
+  const pageSize = 10;
   //
   const posts = await db.post.findMany({
     orderBy: { createdAt: 'asc' },
